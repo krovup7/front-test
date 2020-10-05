@@ -1,5 +1,5 @@
 import {showAlert} from "./actions/ItemsAction";
-import {ADD_ITEM, CHANGE_ITEM, DELETE_ITEM, DELETE_PROPERTY} from "./types";
+import {ADD_ITEM, ADD_PROPERTY, CHANGE_ITEM, DELETE_ITEM, DELETE_PROPERTY} from "./types";
 
 export function notificationAlert({dispatch}){
     return function (next){
@@ -15,6 +15,9 @@ export function notificationAlert({dispatch}){
             }
             else if (action.type===DELETE_PROPERTY){
                 dispatch(showAlert('Свойство удалено'))
+            }
+            else if (action.type===ADD_PROPERTY){
+                dispatch(showAlert('Свойство добавлено'))
             }
             return next(action)
         }
