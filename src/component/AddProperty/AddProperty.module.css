@@ -1,0 +1,72 @@
+.AddContent{
+    width: 100%;
+    background-color: #f8f8fa;
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+    margin-bottom: 3rem !important;
+}
+.AddMain{
+    width: 80%;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px 8px 8px 8px;
+    padding: 1.5rem 3rem 4rem 4rem;
+    height: 700px;
+}
+.inp{
+    margin-top: 80px;
+}
+.inp input{
+    background: #fff;
+    border: 2px solid #dbdfe4;
+    transition: all .2s linear;
+    padding: 5px 9px;
+    margin: 0;
+    border-radius: 4px;
+    font-size: 13px;
+    height: 15px;
+    width: 220px;
+}
+
+.AddMain p{
+    margin-bottom: 5px;
+}
+.propert span{
+    vertical-align: middle;
+    margin-left: 20px;
+}
+.bnt1 {
+    margin-left: 40px;
+    text-decoration: none;
+    float: right;
+    color: #fff;
+    background-color: green;
+    border-color: green;
+    padding: 0.28em 0.5em;
+    line-height: 1.2857em;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border-width: 2px;
+    border-style: solid;
+    width: 136px;
+    text-align: center;
+}
+
+.bntBlock button{
+    text-align: center;
+    width: 136px;
+    text-decoration: none;
+    float: right;
+    color: #fff;
+    background-color: red;
+    border-color: red;
+    padding: 0.28em 0.5em;
+    line-height: 1.2857em;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border-width: 2px;
+    border-style: solid;
+    height: 32px;
+    cursor: pointer;
+}

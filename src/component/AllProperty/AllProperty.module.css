@@ -1,0 +1,88 @@
+.AllContent {
+    width: 100%;
+    background-color: #f8f8fa;
+
+    padding-bottom: 3rem !important;
+    margin-bottom: 3rem !important;
+
+}
+
+.AllMain {
+    width: 80%;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px 8px 8px 8px;
+    padding: 1.5rem 3rem 4rem 4rem;
+    height: 700px;
+}
+
+.header {
+
+    width: 80%;
+    margin-left: 7%;
+}
+.header ul{
+    padding: 0;
+    margin: 0;
+}
+.header ul li{
+    padding: 0;
+    display: inline-block;
+    margin: 0;
+}
+.header ul li a{
+    text-decoration: none;
+}
+
+.prod {
+    text-align: center;
+    width: 200px;
+    padding: 1rem 1rem;
+
+
+}
+
+.prop {
+    margin-right: 100px;
+    width: 200px;
+    color: #0258ff;
+    text-align: center;
+    padding: 1rem 1rem;
+    border-top: 3px solid #0258ff;
+    background: linear-gradient(to bottom, #e0eafa, #ffffff)
+
+}
+.prop a{
+    color: black;
+
+}
+.table {
+    text-align: left;
+    width: 100%;
+    border-spacing: 0px 30px;
+}
+.button{
+    float: right;
+    color: #fff;
+    background-color: #ffb800;
+    border-color: #ffb800;
+    padding: 0.28em 0.5em;
+    line-height: 1.2857em;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border-width: 2px;
+    border-style: solid;
+    text-decoration: none;
+}
+
+
+.color{
+    color: #9b9b9b;
+    font-weight: normal;
+}
+.delete a{
+    margin-left: 100px;
+}
+
+
