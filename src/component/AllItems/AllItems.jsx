@@ -9,10 +9,8 @@ import Pagination from "../utils/Pagination/Pagination";
 
 export default (props) => {
     const dispatch = useDispatch();
-
     return (<div className={s.AllContent}>
         <div className={s.header}>
-
             <ul>
                 <li>
                     <div className={s.prod}><NavLink to={'/'}>Листинг товаров</NavLink></div>
@@ -21,26 +19,24 @@ export default (props) => {
                     <div className={s.prop}><NavLink to={'/AllProperty'}>Листинг проперти</NavLink></div>
                 </li>
             </ul>
-
         </div>
         <div className={s.AllMain}>
-
             <div>
-                <NavLink to={'/AddItem'} className={s.button}>Добавить товар</NavLink>
+                <NavLink to={'/AddItem'} className={s.addProduct}>Добавить товар</NavLink>
             </div>
             <div>
                 <input className={s.search} type={'text'} placeholder={'search'}
                        onChange={e => props.setSearch(e.target.value)}/>
-                <table className={s.table} cellSpacing="0">
+                <table className={s.tableItems} cellSpacing="0">
                     <tbody>
                     <tr>
                         <th>Перечень товаров<Icon icon={chevronSortDown} width='30' cursor='pointer'
                                                   onClick={event => dispatch(sortItems(event))}/></th>
-                        <th className={s.color}>Стоимость</th>
-                        <th className={s.color}>Дата изменения</th>
-                        <th className={s.color}>Управление</th>
+                        <th className={s.colorName}>Стоимость</th>
+                        <th className={s.colorName}>Дата изменения</th>
+                        <th className={s.colorName}>Управление</th>
                     </tr>
-                    {props.currentPosts.map((item) => <tr key={item.id}>
+                    {props.currentItems.map((item) => <tr key={item.id}>
                             <td><NavLink to={'/ItemCard/' + item.id}>{item.name}</NavLink></td>
                             <td>{item.price.toLocaleString('ru')}{item.currency}</td>
                             <td>{item.changed}</td>
@@ -49,17 +45,14 @@ export default (props) => {
                             </td>
                         </tr>
                     )}
-
-
                     </tbody>
-
                 </table>
             </div>
             <Pagination
-                currentPage={props.currentPage}
-                postsPerPage={props.postsPerPage}
-                totalPosts={props.totalPosts}
-                paginate={props.paginate}
+                currentPage = {props.currentPage}
+                itemsPerPage = {props.itemsPerPage}
+                totalItems = {props.totalItems}
+                paginate = {props.paginate}
             />
         </div>
 

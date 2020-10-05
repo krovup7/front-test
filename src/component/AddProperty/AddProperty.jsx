@@ -1,27 +1,23 @@
 import React from "react";
 import s from './AddProperty.module.css'
 import {NavLink} from "react-router-dom";
-
 import {Field, Form, } from "formik";
 
-
 export default (props) => {
-
-
-    return (<div className={s.AddContent}>
-        <div className={s.AddMain}>
+    return (<div className = {s.AddContent}>
+        <div className = {s.AddMain}>
             <Form>
-                <div className={s.bntBlock}>
+                <div className={s.navBlock}>
                     <div>
-                        <NavLink to={'/AllProperty'} className={s.bnt1}>Вернуться</NavLink>
+                        <NavLink to = {'/AllProperty'} className={s.back}>Вернуться</NavLink>
                     </div>
                     <div>
                         <button type="submit">Сохранить</button>
                     </div>
                 </div>
-                <div className={s.inp}>
+                <div className={s.propertyName}>
                     <h4>Добавление свойства</h4>
-                    <p>Название свойства<span style={{color: "red"}}>*</span></p>
+                    <p>Название свойства<span className={s.requiredField}>*</span></p>
                     <input
                         type="name"
                         name="name"
@@ -31,15 +27,13 @@ export default (props) => {
                     />
                     {props.errors.name && props.touched.name && props.errors.name}
                 </div>
-                <p>Укажите тип свойства<span style={{color: "red"}}>*</span></p>
+                <p>Укажите тип свойства<span className={s.requiredField}>*</span></p>
                 <div>
                     <label>
                         <Field type="radio" name="type" value="Dropdown"/>
                         Dropdown
                     </label>
-
                 </div>
-
                 <div>
                     <label>
                         <Field type="radio" name="type" value="Number"/>

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { Redirect} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {changeItem} from "../../redux/actions/ItemsAction";
 import {dateNow} from "../utils/Date";
@@ -67,18 +67,17 @@ const ChangeItemContainer = (props) => {
                     year,
                     fuel
                 }
-
-
             })
         );
     };
-if(!auth){
-    return <Redirect to={'/Login'}/>
-}
+    if (!auth) {
+        return <Redirect to={'/Login'}/>
+    }
     return (redirect ? <Redirect to={'/'}/>
         : <ChangeItem handleSubmit={handleSubmit} name={name} setName={setName} price={price} setPrice={setPrice}
                       handleImageChange={handleImageChange} title={title} setTitle={setTitle} color1={color1}
-                      setColor1={setColor1} color2={color2} setColor1={setColor1} year={year} setYear={setYear}fuel={fuel} setFuel={setFuel} />)
+                      setColor1={setColor1} color2={color2} setColor1={setColor1} year={year} setYear={setYear}
+                      fuel={fuel} setFuel={setFuel}/>)
 }
 const WRChangeItem = withRouter(ChangeItemContainer)
 export default WRChangeItem

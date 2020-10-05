@@ -1,20 +1,21 @@
-.AddContent{
+.AddContent {
     width: 100%;
     background-color: #f8f8fa;
     padding-top: 3rem !important;
     padding-bottom: 3rem !important;
     margin-bottom: 3rem !important;
 }
-.AddMain{
+
+.AddMain {
     width: 80%;
     margin: 0 auto;
     background-color: #fff;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 8px 8px 8px 8px;
     padding: 1.5rem 3rem 4rem 4rem;
-
 }
-.AddMain input{
+
+.AddMain input {
     background: #fff;
     border: 2px solid #dbdfe4;
     transition: all .2s linear;
@@ -25,7 +26,8 @@
     height: 15px;
     width: 220px;
 }
-.AddMain textarea{
+
+.AddMain textarea {
     background: #fff;
     border: 2px solid #dbdfe4;
     transition: all .2s linear;
@@ -36,14 +38,17 @@
     height: 200px;
     width: 550px;
 }
-.AddMain p{
+
+.AddMain p {
     margin-bottom: 5px;
 }
-.propert span{
+
+.propert span {
     vertical-align: middle;
     margin-left: 20px;
 }
-.bnt1 {
+
+.back {
     margin-left: 40px;
     text-decoration: none;
     float: right;
@@ -59,7 +64,8 @@
     width: 136px;
     text-align: center;
 }
-.bnt2 {
+
+.change {
     text-align: center;
     width: 136px;
     text-decoration: none;
@@ -74,15 +80,16 @@
     border-width: 2px;
     border-style: solid;
 }
-.prodDetale{
+
+.productDetale {
     margin-top: 50px;
 }
+
 input[type="file"] {
     display: none;
 }
 
-/* Собственно стилизируем кнопку в соответствии с нужным внешним видом */
-.uploadFile{
+.uploadFile {
     vertical-align: middle;
     background: #fff;
     border: 2px solid #dbdfe4;
@@ -93,22 +100,26 @@ input[type="file"] {
     font-size: 13px;
     height: 15px;
     width: 220px
-
 }
-.uploadFile span{
+
+.uploadFile span {
     float: right;
 }
-.uploadFile p{
-    margin:0
+
+.uploadFile p {
+    margin: 0
 }
-.prop{
+
+.properties {
     display: flex;
     width: 50%;
 }
-.propNum{
+
+.propertyNumber {
     flex: 1;
 }
-.propVal{
+
+.propertyValue {
     margin-top: 12px;
     flex: 1;
 }

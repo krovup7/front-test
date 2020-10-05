@@ -1,16 +1,12 @@
 import React from "react";
 import s from './Login.module.css'
 
-
-
 const Login = (props) => {
-
     return <div className={s.LoginContent}>
                 <div className={s.LoginMain}>
                     <div className={s.LoginForm}>
                         <div className={s.LoginFormMain}>
                             <h2>Вход</h2>
-
                             <form onSubmit={props.handleSubmit}>
                                 <div className={s.FormLogin}>
                                     <label htmlFor="email">Email</label>

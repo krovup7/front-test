@@ -98,24 +98,20 @@ const itemsReducer = (state = initialState, action) => {
                 ...state, items: [...state.items, action.item]
             };
         case SORT_ITEMS_BY_PRICE:
-            if (state.sortbyPrice === false) {
+            if (!state.sortbyPrice) {
                 return {
                     ...state, items: state.items.slice().sort((a, b) => (a.price - b.price)), sortbyPrice: true
                 }
-            } else if (state.sortbyPrice === true) {
+            } else {
                 return {
                     ...state, items: state.items.slice().sort((a, b) => (b.price - a.price)), sortbyPrice: false
                 }
-            }
-            ;
+            };
         case ADD_PROPERTY:
             return {
                 ...state, properties: [...state.properties, action.property],
                 propertiesNames: [...state.propertiesNames, action.property.name]
-
             };
-
-
         case DELETE_PROPERTY:
             const newProperty = state.properties.filter((property) => property.id !== action.id);
             return {
@@ -134,18 +130,13 @@ const itemsReducer = (state = initialState, action) => {
             if (action.data.email === state.email && action.data.password === state.password) {
                 return {
                     ...state, auth: true
-
                 }
             } else {
                 alert('Неверный логин или пароль')
             }
-
         default:
             return state;
     }
-
-
-
 }
 
 export default itemsReducer;

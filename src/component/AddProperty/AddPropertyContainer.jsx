@@ -1,10 +1,10 @@
 import React, {useState} from "react";
+import s from './AddProperty.module.css'
 import {Redirect} from "react-router-dom";
 import {addProperty, showAlert} from "../../redux/actions/ItemsAction";
 import {useDispatch, useSelector} from "react-redux";
 import {Formik} from "formik";
 import AddProperty from "./AddProperty";
-
 
 export default () => {
     const [redirect, setRedirect] = useState(false);
@@ -17,19 +17,18 @@ export default () => {
         return <Redirect to={'/Login'}/>
     }
     return (redirect ? <Redirect to={'/AllProperty'}/>
-        : <Formik initialValues={{name: '', type: ''}}
-                  validate={values => {
+        : <Formik initialValues = {{name: '', type: ''}}
+                  validate = {values => {
                       const errors = {};
                       if (!values.name) {
-                          errors.name = <span style={{color: 'red'}}>{'Required'}</span>;
+                          errors.name = <span className={s.required}>{'Required'}</span>;
                       }
                       if (!values.type) {
-                          errors.type = <span style={{color: 'red'}}>{'Required'}</span>;
-                          ;
+                          errors.type = <span className={s.required}>{'Required'}</span>;
                       }
                       return errors;
                   }}
-                  onSubmit={async (values) => {
+                  onSubmit = {async (values) => {
                       const found = propertiesNames.filter(w => values.name.includes(w))
                       if (found.length) {
                           dispatch(showAlert('Такое свойство существует'))
@@ -43,7 +42,6 @@ export default () => {
                               })
                           );
                       }
-
                   }}
         >{({
                values,
@@ -51,9 +49,6 @@ export default () => {
                touched,
                handleChange,
                handleBlur,
-               handleSubmit,
-               isSubmitting,
-               /* and other goodies */
            }) => <AddProperty handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors}
                               touched={touched}/>}
         </Formik>)

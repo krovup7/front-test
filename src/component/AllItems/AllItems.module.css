@@ -1,10 +1,8 @@
 .AllContent {
     width: 100%;
     background-color: #f8f8fa;
-
     padding-bottom: 3rem !important;
     margin-bottom: 3rem !important;
-
 }
 
 .AllMain {
@@ -18,25 +16,26 @@
 }
 
 .header {
-
     width: 80%;
     margin-left: 7%;
 }
-.header ul{
+
+.header ul {
     padding: 0;
     margin: 0;
 }
-.header ul li{
+
+.header ul li {
     padding: 0;
     display: inline-block;
     margin: 0;
 }
-.header ul li a{
+
+.header ul li a {
     text-decoration: none;
 }
 
 .prod {
-
     width: 200px;
     color: #0258ff;
     text-align: center;
@@ -50,19 +49,19 @@
     text-align: center;
     width: 200px;
     padding: 1rem 1rem;
-
 }
-.prop a{
+
+.prop a {
     color: black;
-
 }
-.table {
+
+.tableItems {
     text-align: left;
     width: 100%;
     border-spacing: 0px 30px;
 }
 
-.button{
+.addProduct {
     float: right;
     color: #fff;
     background-color: #ffb800;
@@ -76,15 +75,16 @@
     text-decoration: none;
 }
 
-.edit a{
-
+.edit a {
     margin-right: 20px;
 }
-.color{
+
+.colorName {
     color: #9b9b9b;
     font-weight: normal;
 }
-.search{
+
+.search {
     background: #fff;
     border: 2px solid #dbdfe4;
     transition: all .2s linear;

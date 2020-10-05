@@ -1,13 +1,10 @@
 import React from 'react';
-import {NavLink} from "react-router-dom";
 import s from './Pagination.module.css'
-const Pagination = ({ postsPerPage, totalPosts, paginate,currentPage }) => {
+const Pagination = ({ itemsPerPage, totalItems, paginate,currentPage }) => {
     const pageNumbers = [];
-
-    for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
         pageNumbers.push(i);
     }
-
     return (
         <nav>
             <ul className='pagination'>
@@ -22,5 +19,4 @@ const Pagination = ({ postsPerPage, totalPosts, paginate,currentPage }) => {
         </nav>
     );
 };
-
 export default Pagination;
