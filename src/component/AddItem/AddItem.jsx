@@ -12,6 +12,7 @@ import Form from "./Form";
 
 
 export default () => {
+    const [properties, setProperties] = useState({});
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [photo, setPhoto] = useState('');
@@ -27,8 +28,19 @@ export default () => {
     const [count, setCount] = useState(0);
     const dispatch = useDispatch();
     let items = useSelector(state => state.items.items)
-    let item=items[items.length - 1]
+    let item = items[items.length - 1]
+    let prop = useSelector(state => state.items.properties)
 
+    const setPropertyValue = (e, id) => {
+        properties[id] = e
+        setProperties(properties)
+    };
+    const setPropertyDropdownValue = (e, id, index) => {
+        let arr = []
+        arr[index] = e
+        properties[id] = arr
+        setProperties(properties)
+    };
 
     const handleImageChange = (e) => {
         e.preventDefault();
@@ -45,9 +57,9 @@ export default () => {
         setRedirect(true)
         dispatch(
             addItem({
-                id: item.id+1,
+                id: item.id + 1,
                 name,
-                price:Number(price),
+                price: Number(price),
                 photo,
                 title,
                 currency,
@@ -92,50 +104,54 @@ export default () => {
                     </div>
                     <div className={s.propert}>
                <span><h4>
-                    Добавление товару свойств <span><Icon icon={plusCircleOutlined} width='30' color="blue"/></span>
+                    Добавление товару свойств <span><Icon icon={plusCircleOutlined} width='30' color="blue"
+                                                          onClick={() => setCount(count + 1)}/></span>
                 </h4></span>
-                        <div className={s.prop}>
-                            <div className={s.propNum}>
-                                <p><span><Icon icon={minusCircleOutlined} color="blue" width='30'/></span> Свойство 1
-                                </p>
-                                <input type={'text'} value={'Цвет авто'}/>
-                            </div>
-                            <div className={s.propVal}>
-                                <p>Значение</p>
-                                <input type={'text'} onChange={(e) => setColor1(e.target.value)}/>
-                                <input type={'text'} onChange={(e) => setColor2(e.target.value)}/>{[...Array(count)].map(() => <Form />)} <span><Icon
-                                icon={minusCircleOutlined} width='30' color="blue"/></span><br/>
-                                <span ><Icon icon={plusCircleOutlined} width='30' color="blue" onClick={() =>setCount(count+1)} /></span>
-                            </div>
-
-                        </div>
-                        <div className={s.prop}>
-                            <div className={s.propNum}>
-                                <p><span><Icon icon={minusCircleOutlined} width='30' color="blue"/></span> Свойство 2
-                                </p>
-                                <input type={'text'} value={'Год выпуска'}/>
-                            </div>
-                            <div className={s.propVal}>
-                                <p>Значение</p>
-                                <input type={'number'} onChange={(e) => setYear(e.target.value)}/>
-                            </div>
-
-                        </div>
-                        <div className={s.prop}>
-                            <div className={s.propNum}>
-                                <p><span><Icon icon={minusCircleOutlined} width='30' color="blue"/></span> Свойство 3
-                                </p>
-                                <input type={'text'} value={'Тип топлива'}/>
-                            </div>
-                            <div className={s.propVal}>
-                                <p>Значение</p>
-                                <input type={'text'} onChange={(e) => setFuel(e.target.value)}/>
-                            </div>
-
-                        </div>
+                        {prop.map((pro, index) => <Form key={pro.id} setFuel={setFuel} setYear={setYear} type={pro.type}
+                                                        valueProperty={setPropertyValue} index={index} id={pro.id}
+                                                        setPropertyDropdownValue={setPropertyDropdownValue}/>)}
 
                     </div>
                 </form>
             </div>
         </div>)
 }
+// <div className={s.prop}>
+//     <div className={s.propNum}>
+//         <p><span><Icon icon={minusCircleOutlined} color="blue" width='30'/></span> Свойство 1
+//         </p>
+//         <input type={'text'} value={'Цвет авто'}/>
+//     </div>
+//     <div className={s.propVal}>
+//         <p>Значение</p>
+//         <input type={'text'} onChange={(e) => setColor1(e.target.value)}/>
+//         <input type={'text'} onChange={(e) => setColor2(e.target.value)}/>{[...Array(count)].map(() => <Form />)} <span><Icon
+//         icon={minusCircleOutlined} width='30' color="blue"/></span><br/>
+//         <span ><Icon icon={plusCircleOutlined} width='30' color="blue" onClick={() =>setCount(count+1)} /></span>
+//     </div>
+//
+// </div>
+// <div className={s.prop}>
+//     <div className={s.propNum}>
+//         <p><span><Icon icon={minusCircleOutlined} width='30' color="blue"/></span> Свойство 2
+//         </p>
+//         <input type={'text'} value={'Год выпуска'}/>
+//     </div>
+//     <div className={s.propVal}>
+//         <p>Значение</p>
+//         <input type={'number'} onChange={(e) => setYear(e.target.value)}/>
+//     </div>
+//
+// </div>
+// <div className={s.prop}>
+//     <div className={s.propNum}>
+//         <p><span><Icon icon={minusCircleOutlined} width='30' color="blue"/></span> Свойство 3
+//         </p>
+//         <input type={'text'} value={'Тип топлива'}/>
+//     </div>
+//     <div className={s.propVal}>
+//         <p>Значение</p>
+//         <input type={'text'} onChange={(e) => setFuel(e.target.value)}/>
+//     </div>
+//
+// </div>
