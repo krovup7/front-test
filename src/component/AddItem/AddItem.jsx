@@ -27,7 +27,6 @@ export default () => {
     const [count, setCount] = useState(0);
     const dispatch = useDispatch();
     let items = useSelector(state => state.items.items)
-    let auth = useSelector(state => state.items.auth)
     let item=items[items.length - 1]
 
 

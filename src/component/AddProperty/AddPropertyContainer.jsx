@@ -11,11 +11,7 @@ export default () => {
     const dispatch = useDispatch();
     let properties = useSelector(state => state.items.properties)
     let propertiesNames = useSelector(state => state.items.propertiesNames)
-    let auth = useSelector(state => state.items.auth)
     let property = properties[properties.length - 1]
-    if (!auth) {
-        return <Redirect to={'/Login'}/>
-    }
     return (redirect ? <Redirect to={'/AllProperty'}/>
         : <Formik initialValues = {{name: '', type: ''}}
                   validate = {values => {

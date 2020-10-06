@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import s from './Login.module.css'
 import {login} from "../../redux/actions/ItemsAction";
 import {useDispatch, useSelector} from "react-redux";

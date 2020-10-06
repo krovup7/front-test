@@ -24,7 +24,6 @@ const ChangeItemContainer = (props) => {
     let items = useSelector(state => state.items.items)
     let userId = props.match.params.userId
     let item = items.find(item => item.id == userId)
-    let auth = useSelector(state => state.items.auth)
 
     useEffect(() => {
         setName(item.name)
@@ -70,9 +69,6 @@ const ChangeItemContainer = (props) => {
             })
         );
     };
-    if (!auth) {
-        return <Redirect to={'/Login'}/>
-    }
     return (redirect ? <Redirect to={'/'}/>
         : <ChangeItem handleSubmit={handleSubmit} name={name} setName={setName} price={price} setPrice={setPrice}
                       handleImageChange={handleImageChange} title={title} setTitle={setTitle} color1={color1}

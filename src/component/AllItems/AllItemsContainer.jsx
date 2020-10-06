@@ -11,7 +11,6 @@ export default () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(5);
     let items = useSelector(state => state.items.items)
-    let auth = useSelector(state => state.items.auth)
     const dispatch = useDispatch();
     useEffect(() => {
         setFilteredItems(items.filter(item => {
@@ -30,9 +29,6 @@ export default () => {
     const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
-if(!auth){
-    return <Redirect to = {'Login'}/>
-}
     return (<div>
             <AllItems currentItems={currentItems} setSearch={setSearch} currentPage={currentPage}
                       itemsPerPage={itemsPerPage}
