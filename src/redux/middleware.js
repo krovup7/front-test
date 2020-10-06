@@ -4,18 +4,25 @@ import {ADD_ITEM, ADD_PROPERTY, CHANGE_ITEM, DELETE_ITEM, DELETE_PROPERTY} from 
 export function notificationAlert({dispatch}) {
     return function (next) {
         return function (action) {
-            if (action.type === DELETE_ITEM) {
-                dispatch(showAlert('Товар успешно удален'))
-            } else if (action.type === CHANGE_ITEM) {
-                dispatch(showAlert('Товар успешно изменен'))
-            } else if (action.type === ADD_ITEM) {
-                dispatch(showAlert('Товар успешно добавлен'))
-            } else if (action.type === DELETE_PROPERTY) {
-                dispatch(showAlert('Свойство удалено'))
-            } else if (action.type === ADD_PROPERTY) {
-                dispatch(showAlert('Свойство добавлено'))
+            switch (action.type) {
+                case DELETE_ITEM:
+                     dispatch(showAlert('Товар успешно удален'));
+                     break
+                case CHANGE_ITEM:
+                     dispatch(showAlert('Товар успешно изменен'));
+                     break
+                case ADD_ITEM:
+                     dispatch(showAlert('Товар успешно добавлен'));
+                     break
+                case DELETE_PROPERTY:
+                     dispatch(showAlert('Свойство удалено'));
+                     break
+                case ADD_PROPERTY:
+                     dispatch(showAlert('Свойство добавлено'));
+                     break
             }
-            return next(action)
+            next(action)
         }
     }
 }
+
