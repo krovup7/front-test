@@ -1,14 +1,11 @@
 import React from "react";
 import s from './AllItems.module.css'
 import {NavLink} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {deleteItem, sortItems} from "../../redux/actions/ItemsAction";
 import {Icon} from '@iconify/react';
 import chevronSortDown from '@iconify/icons-carbon/chevron-sort-down';
 import Pagination from "../utils/Pagination/Pagination";
 
 export default (props) => {
-    const dispatch = useDispatch();
     return (<div className={s.AllContent}>
         <div className={s.header}>
             <ul>
@@ -31,7 +28,7 @@ export default (props) => {
                     <tbody>
                     <tr>
                         <th>Перечень товаров<Icon icon={chevronSortDown} width='30' cursor='pointer'
-                                                  onClick={event => dispatch(sortItems(event))}/></th>
+                                                  onClick={event => props.sortItems(event)}/></th>
                         <th className={s.colorName}>Стоимость</th>
                         <th className={s.colorName}>Дата изменения</th>
                         <th className={s.colorName}>Управление</th>
@@ -41,7 +38,7 @@ export default (props) => {
                             <td>{item.price.toLocaleString('ru')}{item.currency}</td>
                             <td>{item.changed}</td>
                             <td className={s.edit}><NavLink to={'/ChangeItem/' + item.id}>Ред.</NavLink> <NavLink to={'/'}
-                                                                                                                  onClick={() => dispatch(deleteItem(item.id))}>Удалить</NavLink>
+                                                                                                                  onClick={() => props.deleteProduct(item.id)}>Удалить</NavLink>
                             </td>
                         </tr>
                     )}

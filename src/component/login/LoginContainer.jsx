@@ -12,7 +12,7 @@ const LoginContainer = () => {
     if (auth) {
         return <Redirect to={'/'}/>
     }
-    return auth ? <Redirect to={'/'}/> : <Formik
+    return  <Formik
         initialValues={{email: 'test@mail.ru', password: '123'}}
         validate={values => {
             const errors = {};

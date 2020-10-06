@@ -1,10 +1,8 @@
 import React from "react";
 import s from './AllProperty.module.css'
 import {NavLink} from "react-router-dom";
-import {useDispatch} from "react-redux";
 
 export default (props) => {
-    const dispatch = useDispatch();
 
     return (<div className={s.AllContent}>
         <div className={s.header}>
@@ -34,7 +32,7 @@ export default (props) => {
                             <td>{pro.name}</td>
                             <td>{pro.type}</td>
                             <td className={s.delete}><NavLink to={'/AllProperty'}
-                                                              onClick={() => dispatch(props.deleteProperty(pro.id))}>Удалить</NavLink>
+                                                              onClick={() => props.deleteProperty(pro.id)}>Удалить</NavLink>
                             </td>
                         </tr>
                     )}

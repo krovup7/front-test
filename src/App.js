@@ -17,34 +17,17 @@ function App() {
         <div className="App">
             {alert && <Alert text={alert}/>}
             <BrowserRouter>
-                <Route exact path={`/login`} render={() => <LoginContainer/>}/>
-                <Route exact path={`/`} render={() => <AllItemsContainer/>}/>
-                <Route exact path={`/ItemCard/:userId?`} render={() => <ItemCardContainer/>}/>
-                <Route exact path={`/AddItem`} render={() => <AddItem/>}/>
-                <Route exact path={`/ChangeItem/:userId?`} render={() => <ChangeItemContainer/>}/>
-                <Route exact path={`/AllProperty`} render={() => <AllPropertyContainer/>}/>
-                <Route exact path={`/AddProperty`} render={() => <AddPropertyContainer/>}/>
-
+                <Route exact path={'/login'} component={LoginContainer}/>
+                <Route exact path={'/'} component={AllItemsContainer}/>
+                <Route exact path={`/ItemCard/:userId?`} component={ItemCardContainer}/>
+                <Route exact path={'/AddItem'} component={AddItem}/>
+                <Route exact path={`/ChangeItem/:userId?`} component={ChangeItemContainer}/>
+                <Route exact path={'/AllProperty'} component={AllPropertyContainer}/>
+                <Route exact path={'/AddProperty'} component={AddPropertyContainer}/>
             </BrowserRouter>
 
         </div>
     );
 }
-
 export default App;
-// <BrowserRouter>
-//     <div className='app-wrapper'>
-//         <Header/>
-//         <Navbar/>
-//         <FooterPage/>
-//         <div className='app-wrapper-content'>
-//             <Route path='/main/:userId?' render={() => <Main/>}/>
-//             <Route path='/WithUrlDataContainer/:userId?' render={() => <WithUrlDataContainer/>}/>
-//             <Route path='/basket' render={() => <Basket/>}/>
-//             <Route path='/admin' render={() => <AdminPage/>}/>
-//             <Route path='/login' render={() => <Login/>}/>
-//
-//
-//         </div>
-//     </div>
-// </BrowserRouter>
+
