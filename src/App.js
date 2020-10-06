@@ -25,7 +25,7 @@ function App() {
                 <PrivateRoute exact path={'/AddItem'} component={AddItem}/>
                 <PrivateRoute exact path={`/ChangeItem/:userId?`} component={ChangeItemContainer}/>
                 <Route exact path={'/login'} component={LoginContainer}/>
-                <Route exact path={`/ItemCard`} component={ItemCardContainer}/>
+                <Route exact path={`/ItemCard/:userId?`} component={ItemCardContainer}/>
             </BrowserRouter>
 
         </div>
