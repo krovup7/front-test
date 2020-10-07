@@ -68,7 +68,12 @@ let initialState = {
         id: 3,
         name: 'Тип топлива',
         type: 'String'
-    }],
+    },
+        {
+            id: 4,
+            name: 'Кузов',
+            type: "String",
+        }],
     alert: null,
     auth: false,
     email: 'test@mail.ru',
@@ -106,7 +111,8 @@ const itemsReducer = (state = initialState, action) => {
                 return {
                     ...state, items: state.items.slice().sort((a, b) => (b.price - a.price)), sortbyPrice: false
                 }
-            };
+            }
+            ;
         case ADD_PROPERTY:
             return {
                 ...state, properties: [...state.properties, action.property],
