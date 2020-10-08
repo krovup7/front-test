@@ -1,85 +1,64 @@
-import React, {useEffect, useState} from "react";
-import s from './ChangeItem.module.css'
+import React, {useState} from "react";
+import s from './AddItem.module.css'
 import {Icon} from '@iconify/react';
 import uploadIcon from '@iconify/icons-fa-solid/upload';
 import plusCircleOutlined from '@iconify/icons-ant-design/plus-circle-outlined';
-import {NavLink, Redirect, withRouter} from "react-router-dom";
+import {NavLink, Redirect} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {addItem, addProperty, changeItem, showAlert} from "../../redux/actions/ItemsAction";
+import {addItem, addProperty, showAlert} from "../../redux/actions/ItemsAction";
 import {dateNow} from "../utils/Date";
 import {Formik, Form} from "formik";
-import FormChangeProperty from "./FormChangeProperty";
-import ChangeItem from "./ChangeItem";
-import AddItem from "../AddItem/AddItem";
+import FormProperty from "./FormProperty";
+import AddItem from "./AddItem";
 
 
-const ChangeItemContainer = (props) => {
+export default () => {
+    const [choosesProp, setChoosesProp] = useState([{
+        id: 1,
+        name: 'Цвет авто',
+        type: 'Dropdown'
+    }, {
+        id: 2,
+        name: 'Год выпуска',
+        type: 'Number'
+    }, {
+        id: 3,
+        name: 'Тип топлива',
+        type: 'String'
+    },]);
+    const [color, setColor] = useState([]);
     const [properties, setProperties] = useState({});
     const [photo, setPhoto] = useState('');
     const [title, setTitle] = useState('');
     const [currency, setCurrency] = useState('$');
     const [changed, setChanged] = useState(dateNow);
     const [redirect, setRedirect] = useState(false);
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState([1, 2]);
     const dispatch = useDispatch();
     let items = useSelector(state => state.items.items)
-    let userId = props.match.params.userId
-    let item = items.find(item => item.id == userId)
+    let item = items[items.length - 1]
     let allProp = useSelector(state => state.items.properties)
 
 
-    useEffect(() => {
-        setProperties(item.property)
-        setPhoto(item.photo)
-        setCurrency(item.currency)
-        setTitle(item.title)
-
-    }, [userId]);
-
-
-    let avaibleProp = allProp.filter(o => !properties.hasOwnProperty(o.id))
+    let avaibleProp = allProp.filter(o => !choosesProp.find(x => o.id === x.id))
 
     const deleteProperty = (id) => {
-        let newProps = {...properties}
-        delete newProps[id]
-        setProperties(newProps)
+        setChoosesProp(choosesProp.filter(x => x.id !== id))
     };
     const addProperty = (e) => {
-        let selectedProperty = allProp.find(o => o.id === Number(e))
-        let defaultValue = ''
-        if (selectedProperty.type === 'Dropdown') {
-            defaultValue = []
-        } else if (selectedProperty.type === 'Number') {
-            defaultValue = 0
-        }
-        let newProps = {...properties}
-        newProps[e] = defaultValue
-        setProperties(newProps)
-
+        let p = allProp.find(x => x.id === Number(e))
+        setChoosesProp([...choosesProp, p])
     };
     const setPropertyValue = (e, id) => {
-        let newProps = {...properties}
-        newProps[id] = e
-        setProperties(newProps)
+        properties[id] = e
+        setProperties(properties)
     };
     const setPropertyDropdownValue = (e, id, index) => {
-        let newProps = {...properties}
-        newProps[id][index] = e
-        setProperties(newProps)
-    };
-    const addDropdown = (id) => {
-        let newProps = {...properties}
-        newProps[id].push('')
-        setProperties(newProps)
-    };
-    const deleteDropdown = (index, id) => {
-        debugger
-        let newProps = {...properties}
-        delete newProps[id][index]
-        setProperties(newProps)
 
-    }
-
+        color[index] = e
+        properties[id] = color
+        setProperties(properties)
+    };
 
     const handleImageChange = (e) => {
         e.preventDefault();
@@ -90,9 +69,15 @@ const ChangeItemContainer = (props) => {
         }
         reader.readAsDataURL(file)
     };
+    const addDropdown = (id) => {
+        setCount([...count, 1])
+    };
+    const deleteDropdown = (index, id) => {
+        setCount(count.slice(0, -1))
+    }
 
     return (redirect ? <Redirect to={'/'}/>
-        : <Formik initialValues={{name: item.name, price: item.price}}
+        : <Formik initialValues={{name: '', price: ''}}
                   validate={values => {
                       const errors = {};
                       if (!values.name) {
@@ -106,8 +91,8 @@ const ChangeItemContainer = (props) => {
                   onSubmit={async (values) => {
                       setRedirect(true)
                       dispatch(
-                          changeItem({
-                              id: item.id,
+                          addItem({
+                              id: item.id + 1,
                               name: values.name,
                               price: Number(values.price),
                               photo,
@@ -126,28 +111,23 @@ const ChangeItemContainer = (props) => {
                touched,
                handleChange,
                handleBlur,
-           }) => <ChangeItem
+           }) => <AddItem
             handleChange={handleChange}
             handleBlur={handleBlur}
             touched={touched}
             errors={errors}
             values={values}
-            handleImageChange={handleImageChange}
-            title={title}
             setTitle={setTitle}
             addProperty={addProperty}
-            deleteProperty={deleteProperty}
             avaibleProp={avaibleProp}
-            properties={properties}
-            deleteDropdown={deleteDropdown}
-            addDropdown={addDropdown}
-            allProp={allProp}
+            choosesProp={choosesProp}
             setPropertyValue={setPropertyValue}
             setPropertyDropdownValue={setPropertyDropdownValue}
-
-
-
+            deleteProperty={deleteProperty}
+            color={color}
+            addDropdown={addDropdown}
+            deleteDropdown={deleteDropdown}
+            handleImageChange={handleImageChange}
+            count={count}
         />}</Formik>)
 }
-const WRChangeItem = withRouter(ChangeItemContainer)
-export default WRChangeItem

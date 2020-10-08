@@ -48,6 +48,23 @@
     margin-left: 20px;
 }
 
+.navBlock button{
+    text-align: center;
+    width: 136px;
+    text-decoration: none;
+    float: right;
+    color: #fff;
+    background-color: red;
+    border-color: red;
+    padding: 0.28em 0.5em;
+    line-height: 1.2857em;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border-width: 2px;
+    border-style: solid;
+    height: 32px;
+    cursor: pointer;
+}
 .back {
     margin-left: 40px;
     text-decoration: none;
@@ -110,16 +127,17 @@ input[type="file"] {
     margin: 0
 }
 
-.properties {
+.prop{
     display: flex;
     width: 50%;
 }
-
-.propertyNumber {
+.propNum{
     flex: 1;
 }
-
-.propertyValue {
+.propVal{
     margin-top: 12px;
     flex: 1;
+}
+.required{
+    color: red;
 }

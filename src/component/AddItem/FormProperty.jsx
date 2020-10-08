@@ -6,25 +6,19 @@ import plusCircleOutlined from "@iconify/icons-ant-design/plus-circle-outlined";
 import Input from "./Input";
 export default (props)=>{
     const [type, setType] = useState(props.type);
-    const [count, setCount] = useState([1,2]);
-    const addColor=()=>{
-        setCount([...count, 1])
-    };
-    const deleteColor=()=>{
-        setCount(count.slice(0, -1))
-    }
+
     if(type==='Dropdown')
     return <div className={s.prop}>
         <div className={s.propNum}>
             <p><span><Icon icon={minusCircleOutlined} color="blue" width='30' onClick={()=>{props.deleteProperty(props.id)}}/></span> Свойство
             </p>
-            <input type={'text'} value={props.name}/>
+            <input type={'text'} value={props.name} readOnly/>
         </div>
         <div className={s.propVal}>
             <p>Значение</p>
-            {count.map((n,index) => <Input key={index} setPropertyDropdownValue={props.setPropertyDropdownValue} index={index} id={props.id}/>)}<span><Icon
-            icon={minusCircleOutlined} width='30' color="blue" onClick={deleteColor}/></span><br/>
-            <span ><Icon icon={plusCircleOutlined} width='30' color="blue" onClick={addColor} /></span>
+            {props.count.map((n,index) => <Input key={index} setPropertyDropdownValue={props.setPropertyDropdownValue} index={index} id={props.id}/>)}<span><Icon
+            icon={minusCircleOutlined} width='30' color="blue" onClick={props.deleteDropdown}/></span><br/>
+            <span ><Icon icon={plusCircleOutlined} width='30' color="blue" onClick={props.addDropdown} /></span>
         </div>
     </div>
     else if(type==='Number'){
@@ -32,7 +26,7 @@ export default (props)=>{
             <div className={s.propNum}>
                 <p><span><Icon icon={minusCircleOutlined} width='30' color="blue" onClick={()=>{props.deleteProperty(props.id)}}/></span> Свойство
                 </p>
-                <input type={'text'} value={props.name}/>
+                <input type={'text'} value={props.name} readOnly/>
             </div>
             <div className={s.propVal}>
                 <p>Значение</p>
@@ -46,7 +40,7 @@ export default (props)=>{
             <div className={s.propNum}>
                 <p><span><Icon icon={minusCircleOutlined} width='30' color="blue" onClick={()=>{props.deleteProperty(props.id)}}/></span> Свойство
                 </p>
-                <input type={'text'} value={props.name}/>
+                <input type={'text'} value={props.name} readOnly/>
             </div>
             <div className={s.propVal}>
                 <p>Значение</p>

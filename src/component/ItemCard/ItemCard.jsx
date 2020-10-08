@@ -19,7 +19,7 @@ const ItemCard = (props) => {
             </div>
             <div className={s.ItemSpecific}>
 
-                {props.listProperty.map(p => <ItemInput name={p.name} value={p.value} type={p.type}/>)}
+                {props.listProperty.map((p,index) => <ItemInput key={index} name={p.name} value={p.value} type={p.type}/>)}
                 <h4>Стоимость</h4>
                 <div className={s.buy}><p>{props.item.price.toLocaleString('ru')}{props.item.currency}</p>
                     <button>Беру!!!</button>
