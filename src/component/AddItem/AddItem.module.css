@@ -43,7 +43,7 @@
    vertical-align: middle;
     margin-left: 20px;
 }
-.bnt1 {
+.back {
     margin-left: 40px;
     text-decoration: none;
     float: right;
@@ -59,7 +59,7 @@
     width: 136px;
     text-align: center;
 }
-.bnt2 {
+.navBlock button{
     text-align: center;
     width: 136px;
     text-decoration: none;
@@ -73,6 +73,8 @@
     box-sizing: border-box;
     border-width: 2px;
     border-style: solid;
+    height: 32px;
+    cursor: pointer;
 }
 .prodDetale{
     margin-top: 50px;
@@ -111,4 +113,7 @@ input[type="file"] {
 .propVal{
     margin-top: 12px;
     flex: 1;
+}
+.required{
+    color: red;
 }

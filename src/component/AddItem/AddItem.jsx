@@ -6,9 +6,10 @@ import minusCircleOutlined from '@iconify/icons-ant-design/minus-circle-outlined
 import plusCircleOutlined from '@iconify/icons-ant-design/plus-circle-outlined';
 import {NavLink, Redirect} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {addItem} from "../../redux/actions/ItemsAction";
+import {addItem, addProperty, showAlert} from "../../redux/actions/ItemsAction";
 import {dateNow} from "../utils/Date";
-import Form from "./Form";
+import {Formik,Form} from "formik";
+import FormProperty from "./FormProperty";
 
 
 export default () => {
@@ -27,18 +28,11 @@ export default () => {
     },]);
     const [arr, setArr] = useState(['']);
     const [properties, setProperties] = useState({});
-    const [name, setName] = useState('');
-    const [price, setPrice] = useState('');
     const [photo, setPhoto] = useState('');
     const [title, setTitle] = useState('');
     const [currency, setCurrency] = useState('$');
     const [changed, setChanged] = useState(dateNow);
     const [redirect, setRedirect] = useState(false);
-    const [color, setColor] = useState([]);
-    const [color1, setColor1] = useState('');
-    const [color2, setColor2] = useState('');
-    const [year, setYear] = useState(null);
-    const [fuel, setFuel] = useState("");
     const [count, setCount] = useState(0);
     const dispatch = useDispatch();
     let items = useSelector(state => state.items.items)
@@ -74,48 +68,76 @@ export default () => {
         }
         reader.readAsDataURL(file)
     };
-    const handleSubmit = (e) => {
-        color.push(color1, color2)
-        e.preventDefault();
-        setRedirect(true)
-        dispatch(
-            addItem({
-                id: item.id + 1,
-                name,
-                price: Number(price),
-                photo,
-                title,
-                currency,
-                changed,
-                property: {
-                    color: color,
-                    year,
-                    fuel
-                }
-
-
-            })
-        );
-    };
 
     return (redirect ? <Redirect to={'/'}/>
-        : <div className={s.AddContent}>
+        : <Formik initialValues={{name: '', price: ''}}
+                  validate={values => {
+                      const errors = {};
+                      if (!values.name) {
+                          errors.name = <span className={s.required}>{'Required'}</span>;
+                      }
+                      if (!values.price) {
+                          errors.price = <span className={s.required}>{'Required'}</span>;
+                      }
+                      return errors;
+                  }}
+                  onSubmit={async (values) => {
+                      setRedirect(true)
+                      dispatch(
+                          addItem({
+                              id: item.id + 1,
+                              name:values.name,
+                              price: Number(values.price),
+                              photo,
+                              title,
+                              currency,
+                              changed,
+                              property: properties
+
+
+                          })
+                      );
+                  }}
+        >{({
+               values,
+               errors,
+               touched,
+               handleChange,
+               handleBlur,
+           }) => <div className={s.AddContent}>
             <div className={s.AddMain}>
-                <div className={s.bntBlock}>
-                    <div>
-                        <NavLink to={'/'} className={s.bnt1}>Вернуться</NavLink>
+                <Form>
+
+                    <div className={s.navBlock}>
+                        <div>
+                            <NavLink to = {'/'} className={s.back}>Вернуться</NavLink>
+                        </div>
+                        <div>
+                            <button type="submit">Сохранить</button>
+                        </div>
                     </div>
-                    <div>
-                        <NavLink to={'/'} className={s.bnt2} onClick={handleSubmit}>Сохранить</NavLink>
-                    </div>
-                </div>
-                <form>
+
                     <div className={s.prodDetale}>
                         <h4>Добавление товара</h4>
                         <p>Название товара<span style={{color: "red"}}>*</span></p>
-                        <input type={'text'} onChange={(e) => setName(e.target.value)}/>
-                        <p>Стоимость товара<span style={{color: "red"}}>*</span></p>
-                        <input type={'number'} onChange={(e) => setPrice(e.target.value)}/>
+                        <input
+                            type="name"
+                            name="name"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.name}
+                        />
+                        {errors.name && touched.name && errors.name}
+                        <p>Стоимость товара<span
+                        style={{color: "red"}}>*</span></p>
+                        <input
+                            type="number"
+                            name="price"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.price}
+                        />
+                        {errors.price && touched.price && errors.price}
                         <p>Изображение<span style={{color: "red"}}>*</span></p>
                         <div className={s.uploadFile}><label>
                             <input type="file" onChange={handleImageChange}/>
@@ -137,7 +159,7 @@ export default () => {
                    )}
                 </select></span>
                 </h4></span>
-                        {choosesProp.map((pro, index) => <Form key={pro.id}
+                        {choosesProp.map((pro, index) => <FormProperty key={pro.id}
                                                                type={pro.type} name={pro.name}
                                                                valueProperty={setPropertyValue} index={index}
                                                                id={pro.id}
@@ -145,7 +167,7 @@ export default () => {
                                                                deleteProperty={deleteProperty}/>)}
 
                     </div>
-                </form>
+                </Form>
             </div>
-        </div>)
+        </div>}</Formik>)
 }
