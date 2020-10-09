@@ -12,7 +12,6 @@ export default (props) => {
         <div className={s.AddContent}>
             <div className={s.AddMain}>
                 <Form>
-
                     <div className={s.navBlock}>
                         <div>
                             <NavLink to={'/'} className={s.back}>Вернуться</NavLink>
@@ -21,8 +20,7 @@ export default (props) => {
                             <button type="submit">Сохранить</button>
                         </div>
                     </div>
-
-                    <div className={s.prodDetale}>
+                    <div className={s.productProperties}>
                         <h4>Добавление товара</h4>
                         <p>Название товара<span style={{color: "red"}}>*</span></p>
                         <input

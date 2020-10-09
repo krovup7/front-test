@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { useSelector} from "react-redux";
 import AllItems from "./AllItems";
-import {Redirect} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {deleteItem, sortItems} from "../../redux/actions/ItemsAction";
 

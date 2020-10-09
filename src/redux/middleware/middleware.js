@@ -1,5 +1,5 @@
-import {showAlert} from "./actions/ItemsAction";
-import {ADD_ITEM, ADD_PROPERTY, CHANGE_ITEM, DELETE_ITEM, DELETE_PROPERTY} from "./types";
+import {showAlert} from "../actions/ItemsAction";
+import {ADD_ITEM, ADD_PROPERTY, CHANGE_ITEM, DELETE_ITEM, DELETE_PROPERTY} from "../types/types";
 
 export function notificationAlert({dispatch}) {
     return function (next) {

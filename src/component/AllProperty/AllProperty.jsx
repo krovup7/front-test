@@ -14,7 +14,6 @@ export default (props) => {
                     <div className={s.properties}><NavLink to={'/AllProperty'}>Листинг проперти</NavLink></div>
                 </li>
             </ul>
-
         </div>
         <div className={s.AllMain}>
             <div>

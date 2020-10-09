@@ -22,7 +22,6 @@ export default (props) => {
                                                             setPropertyDropdownValue={props.setPropertyDropdownValue}
                                                             index={index} id={props.id} value={n}
                                                             deleteDropdown={props.deleteDropdown}/>)}
-                <br/>
                 <span><Icon icon={plusCircleOutlined} width='30' color="blue" onClick={() => {
                     props.addDropdown(props.id)
                 }}/></span>
@@ -42,7 +41,6 @@ export default (props) => {
                 <input type={'number'} onChange={(e) => props.setPropertyValue(e.target.value, props.id)}
                        value={props.value}/>
             </div>
-
         </div>
     } else if (type === 'String') {
         return <div className={s.prop}>
@@ -58,7 +56,6 @@ export default (props) => {
                 <input type={'text'} onChange={(e) => props.setPropertyValue(e.target.value, props.id)}
                        value={props.value}/>
             </div>
-
         </div>
     }
 }

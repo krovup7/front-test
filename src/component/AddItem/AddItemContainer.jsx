@@ -1,16 +1,11 @@
 import React, {useState} from "react";
 import s from './AddItem.module.css'
-import {Icon} from '@iconify/react';
-import uploadIcon from '@iconify/icons-fa-solid/upload';
-import plusCircleOutlined from '@iconify/icons-ant-design/plus-circle-outlined';
-import {NavLink, Redirect} from "react-router-dom";
+import { Redirect} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {addItem, addProperty, showAlert} from "../../redux/actions/ItemsAction";
+import {addItem} from "../../redux/actions/ItemsAction";
 import {dateNow} from "../utils/Date";
-import {Formik, Form} from "formik";
-import FormProperty from "./FormProperty";
+import {Formik} from "formik";
 import AddItem from "./AddItem";
-
 
 export default () => {
     const [choosesProp, setChoosesProp] = useState([{
@@ -38,8 +33,6 @@ export default () => {
     let items = useSelector(state => state.items.items)
     let item = items[items.length - 1]
     let allProp = useSelector(state => state.items.properties)
-
-
     let avaibleProp = allProp.filter(o => !choosesProp.find(x => o.id === x.id))
 
     const deleteProperty = (id) => {
@@ -54,12 +47,10 @@ export default () => {
         setProperties(properties)
     };
     const setPropertyDropdownValue = (e, id, index) => {
-
         color[index] = e
         properties[id] = color
         setProperties(properties)
     };
-
     const handleImageChange = (e) => {
         e.preventDefault();
         let reader = new FileReader();
@@ -69,10 +60,10 @@ export default () => {
         }
         reader.readAsDataURL(file)
     };
-    const addDropdown = (id) => {
+    const addDropdown = () => {
         setCount([...count, 1])
     };
-    const deleteDropdown = (index, id) => {
+    const deleteDropdown = () => {
         setCount(count.slice(0, -1))
     }
 
@@ -100,8 +91,6 @@ export default () => {
                               currency,
                               changed,
                               property: properties
-
-
                           })
                       );
                   }}

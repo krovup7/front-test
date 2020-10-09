@@ -18,8 +18,6 @@ const ItemCardContainer = (props) => {
             value: item.property[key],
             name: allProp.find(p => p.id === Number(key)).name,
             type: allProp.find(p => p.id === Number(key)).type,
-
-
         })
     }
     return (<ItemCard item={item} listProperty={listProperty}/>

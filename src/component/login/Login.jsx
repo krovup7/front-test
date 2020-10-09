@@ -41,6 +41,5 @@ const Login = (props) => {
                 </div>
             </div>
 
-
 }
 export default Login

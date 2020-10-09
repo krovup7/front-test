@@ -7,7 +7,7 @@ import {
     LOGIN,
     SHOW_ALERT,
     SORT_ITEMS_BY_PRICE
-} from "./types";
+} from "../types/types";
 
 let initialState = {
     items: [
@@ -112,7 +112,6 @@ const itemsReducer = (state = initialState, action) => {
                     ...state, items: state.items.slice().sort((a, b) => (b.price - a.price)), sortbyPrice: false
                 }
             }
-            ;
         case ADD_PROPERTY:
             return {
                 ...state, properties: [...state.properties, action.property],
@@ -120,6 +119,7 @@ const itemsReducer = (state = initialState, action) => {
             };
         case DELETE_PROPERTY:
             const newProperty = state.properties.filter((property) => property.id !== action.id);
+             state.items.map(item=> delete item.property[action.id])
             return {
                 ...state, properties: newProperty,
             };

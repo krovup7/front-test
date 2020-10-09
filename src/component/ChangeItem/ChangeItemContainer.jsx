@@ -1,17 +1,11 @@
 import React, {useEffect, useState} from "react";
 import s from './ChangeItem.module.css'
-import {Icon} from '@iconify/react';
-import uploadIcon from '@iconify/icons-fa-solid/upload';
-import plusCircleOutlined from '@iconify/icons-ant-design/plus-circle-outlined';
-import {NavLink, Redirect, withRouter} from "react-router-dom";
+import {Redirect, withRouter} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {addItem, addProperty, changeItem, showAlert} from "../../redux/actions/ItemsAction";
+import {changeItem} from "../../redux/actions/ItemsAction";
 import {dateNow} from "../utils/Date";
-import {Formik, Form} from "formik";
-import FormChangeProperty from "./FormChangeProperty";
+import {Formik} from "formik";
 import ChangeItem from "./ChangeItem";
-import AddItem from "../AddItem/AddItem";
-
 
 const ChangeItemContainer = (props) => {
     const [properties, setProperties] = useState({});
@@ -20,13 +14,11 @@ const ChangeItemContainer = (props) => {
     const [currency, setCurrency] = useState('$');
     const [changed, setChanged] = useState(dateNow);
     const [redirect, setRedirect] = useState(false);
-    const [count, setCount] = useState(0);
     const dispatch = useDispatch();
     let items = useSelector(state => state.items.items)
     let userId = props.match.params.userId
     let item = items.find(item => item.id == userId)
     let allProp = useSelector(state => state.items.properties)
-
 
     useEffect(() => {
         setProperties(item.property)
@@ -35,8 +27,6 @@ const ChangeItemContainer = (props) => {
         setTitle(item.title)
 
     }, [userId]);
-
-
     let avaibleProp = allProp.filter(o => !properties.hasOwnProperty(o.id))
 
     const deleteProperty = (id) => {
@@ -77,10 +67,7 @@ const ChangeItemContainer = (props) => {
         let newProps = {...properties}
         delete newProps[id][index]
         setProperties(newProps)
-
-    }
-
-
+    };
     const handleImageChange = (e) => {
         e.preventDefault();
         let reader = new FileReader();
@@ -115,8 +102,6 @@ const ChangeItemContainer = (props) => {
                               currency,
                               changed,
                               property: properties
-
-
                           })
                       );
                   }}
@@ -144,9 +129,6 @@ const ChangeItemContainer = (props) => {
             allProp={allProp}
             setPropertyValue={setPropertyValue}
             setPropertyDropdownValue={setPropertyDropdownValue}
-
-
-
         />}</Formik>)
 }
 const WRChangeItem = withRouter(ChangeItemContainer)

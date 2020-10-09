@@ -27,7 +27,6 @@ function App() {
                 <Route exact path={'/login'} component={LoginContainer}/>
                 <Route exact path={`/ItemCard/:userId?`} component={ItemCardContainer}/>
             </BrowserRouter>
-
         </div>
     );
 }
