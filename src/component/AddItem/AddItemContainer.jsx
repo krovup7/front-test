@@ -5,9 +5,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {addItem} from "../../redux/actions/ItemsAction";
 import {dateNow} from "../utils/Date";
 import {Formik} from "formik";
-import AddItem from "./AddItem";
+import {AddItem} from "./AddItem";
 
-export default () => {
+export const AddItemContainer = () => {
     const [choosesProp, setChoosesProp] = useState([{
         id: 1,
         name: 'Цвет авто',

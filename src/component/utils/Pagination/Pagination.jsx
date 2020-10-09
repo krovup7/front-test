@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './Pagination.module.css'
-const Pagination = ({ itemsPerPage, totalItems, paginate,currentPage }) => {
+
+export const Pagination = ({ itemsPerPage, totalItems, paginate,currentPage }) => {
     const pageNumbers = [];
     for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
         pageNumbers.push(i);
@@ -19,4 +20,3 @@ const Pagination = ({ itemsPerPage, totalItems, paginate,currentPage }) => {
         </nav>
     );
 };
-export default Pagination;

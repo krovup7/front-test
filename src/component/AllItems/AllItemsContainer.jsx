@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 import { useSelector} from "react-redux";
-import AllItems from "./AllItems";
+import {AllItems} from "./AllItems";
 import {useDispatch} from "react-redux";
 import {deleteItem, sortItems} from "../../redux/actions/ItemsAction";
 
-export default () => {
+export const AllItemsContainer = () => {
     const [search, setSearch] = useState('');
     const [filteredItems, setFilteredItems] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);

@@ -1,7 +1,7 @@
 import React from "react";
 import {withRouter} from "react-router-dom";
 import {useSelector} from "react-redux";
-import ItemCard from "./ItemCard";
+import {ItemCard} from "./ItemCard";
 
 const ItemCardContainer = (props) => {
     let items = useSelector(state => state.items.items)

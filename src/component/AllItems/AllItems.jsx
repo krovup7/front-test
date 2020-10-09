@@ -3,9 +3,9 @@ import s from './AllItems.module.css'
 import {NavLink} from "react-router-dom";
 import {Icon} from '@iconify/react';
 import chevronSortDown from '@iconify/icons-carbon/chevron-sort-down';
-import Pagination from "../utils/Pagination/Pagination";
+import {Pagination} from "../utils/Pagination/Pagination";
 
-export default (props) => {
+export const AllItems = (props) => {
     return (<div className={s.AllContent}>
         <div className={s.header}>
             <ul>

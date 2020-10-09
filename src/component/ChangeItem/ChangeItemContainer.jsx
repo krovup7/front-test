@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {changeItem} from "../../redux/actions/ItemsAction";
 import {dateNow} from "../utils/Date";
 import {Formik} from "formik";
-import ChangeItem from "./ChangeItem";
+import {ChangeItem} from "./ChangeItem";
 
 const ChangeItemContainer = (props) => {
     const [properties, setProperties] = useState({});

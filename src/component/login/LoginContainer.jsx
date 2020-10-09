@@ -4,9 +4,9 @@ import {login} from "../../redux/actions/ItemsAction";
 import {useDispatch, useSelector} from "react-redux";
 import {Redirect} from "react-router-dom";
 import {Formik} from 'formik';
-import Login from "./Login";
+import {Login} from "./Login";
 
-const LoginContainer = () => {
+export const LoginContainer = () => {
     let auth = useSelector(state => state.items.auth)
     const dispatch = useDispatch();
     if (auth) {
@@ -48,4 +48,4 @@ const LoginContainer = () => {
                         errors={errors} touched={touched} isSubmitting={isSubmitting}/>)}
     </Formik>
 }
-export default LoginContainer
+

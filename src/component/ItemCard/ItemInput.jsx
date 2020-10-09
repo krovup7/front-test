@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-export default (props) => {
+export const ItemInput = (props) => {
     const [type, setType] = useState(props.type);
     if (type === 'Dropdown') {
         return <div>

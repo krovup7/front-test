@@ -2,7 +2,7 @@ import React from "react";
 import s from './AllProperty.module.css'
 import {NavLink} from "react-router-dom";
 
-export default (props) => {
+export const AllProperty = (props) => {
 
     return (<div className={s.AllContent}>
         <div className={s.header}>

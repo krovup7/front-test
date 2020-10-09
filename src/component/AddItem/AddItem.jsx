@@ -5,9 +5,9 @@ import {NavLink} from "react-router-dom";
 import {Icon} from "@iconify/react";
 import uploadIcon from "@iconify/icons-fa-solid/upload";
 import plusCircleOutlined from "@iconify/icons-ant-design/plus-circle-outlined";
-import FormProperty from "./FormProperty";
+import {FormProperty} from "./FormProperty";
 
-export default (props) => {
+export const AddItem = (props) => {
     return (
         <div className={s.AddContent}>
             <div className={s.AddMain}>

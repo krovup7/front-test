@@ -1,9 +1,9 @@
 import React from "react";
 import s from './ItemCard.module.css'
 import {NavLink} from "react-router-dom";
-import ItemInput from "./ItemInput";
+import {ItemInput} from "./ItemInput";
 
-const ItemCard = (props) => {
+export const ItemCard = (props) => {
     return (<div className={s.ItemContent}>
         <div className={s.ItemMain}>
             <NavLink to={'/'}>Вернуться</NavLink>
@@ -27,4 +27,3 @@ const ItemCard = (props) => {
         </div>
     </div>)
 }
-export default ItemCard

@@ -3,9 +3,9 @@ import s from "./ChangeItem.module.css";
 import {Icon} from "@iconify/react";
 import minusCircleOutlined from "@iconify/icons-ant-design/minus-circle-outlined";
 import plusCircleOutlined from "@iconify/icons-ant-design/plus-circle-outlined";
-import InputChange from "./InputChange";
+import {InputChange} from "./InputChange";
 
-export default (props) => {
+export const FormChangeProperty = (props) => {
     const [type, setType] = useState(props.type);
     if (type === 'Dropdown')
         return <div className={s.prop}>

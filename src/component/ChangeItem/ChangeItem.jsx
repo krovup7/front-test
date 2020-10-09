@@ -5,9 +5,9 @@ import uploadIcon from '@iconify/icons-fa-solid/upload';
 import plusCircleOutlined from '@iconify/icons-ant-design/plus-circle-outlined';
 import {NavLink} from "react-router-dom";
 import {Form} from "formik";
-import FormChangeProperty from "./FormChangeProperty";
+import {FormChangeProperty} from "./FormChangeProperty";
 
-const ChangeItem = (props) => {
+export const ChangeItem = (props) => {
     return (<div className={s.AddContent}>
         <div className={s.AddMain}>
             <Form>
@@ -78,4 +78,3 @@ const ChangeItem = (props) => {
         </div>
     </div>)
 }
-export default ChangeItem

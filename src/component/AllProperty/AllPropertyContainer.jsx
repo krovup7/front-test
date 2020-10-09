@@ -1,10 +1,10 @@
 import React from "react";
 import {useSelector} from "react-redux";
 import { deleteProperty} from "../../redux/actions/ItemsAction";
-import AllProperty from "./AllProperty";
+import {AllProperty} from "./AllProperty";
 import {useDispatch} from "react-redux";
 
-export default () => {
+export const AllPropertyContainer = () => {
     const dispatch = useDispatch();
     let properties = useSelector(state => state.items.properties)
     const deleteProp=(id)=>{

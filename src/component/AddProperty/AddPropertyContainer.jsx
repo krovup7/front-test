@@ -4,9 +4,9 @@ import {Redirect} from "react-router-dom";
 import {addProperty, showAlert} from "../../redux/actions/ItemsAction";
 import {useDispatch, useSelector} from "react-redux";
 import {Formik} from "formik";
-import AddProperty from "./AddProperty";
+import {AddProperty} from "./AddProperty";
 
-export default () => {
+export const AddPropertyContainer = () => {
     const [redirect, setRedirect] = useState(false);
     const dispatch = useDispatch();
     let properties = useSelector(state => state.items.properties)

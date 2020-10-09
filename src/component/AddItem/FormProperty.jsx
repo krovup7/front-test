@@ -3,8 +3,9 @@ import s from "./AddItem.module.css";
 import {Icon} from "@iconify/react";
 import minusCircleOutlined from "@iconify/icons-ant-design/minus-circle-outlined";
 import plusCircleOutlined from "@iconify/icons-ant-design/plus-circle-outlined";
-import Input from "./Input";
-export default (props)=>{
+import {Input} from "./Input";
+
+export const FormProperty = (props)=>{
     const [type, setType] = useState(props.type);
 
     if(type==='Dropdown')
