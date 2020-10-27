@@ -9,8 +9,8 @@ import {AddProperty} from "./AddProperty";
 export const AddPropertyContainer = () => {
     const [redirect, setRedirect] = useState(false);
     const dispatch = useDispatch();
-    let properties = useSelector(state => state.items.properties)
-    let propertiesNames = useSelector(state => state.items.propertiesNames)
+    let properties = useSelector(state => state.properties.properties)
+    let propertiesNames = useSelector(state => state.properties.propertiesNames)
     let property = properties[properties.length - 1]
     return (redirect ? <Redirect to={'/AllProperty'}/>
         : <Formik initialValues = {{name: '', type: ''}}

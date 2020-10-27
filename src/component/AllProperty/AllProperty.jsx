@@ -1,6 +1,7 @@
 import React from "react";
 import s from './AllProperty.module.css'
 import {NavLink} from "react-router-dom";
+import {Property} from "./Property";
 
 export const AllProperty = (props) => {
 
@@ -8,7 +9,7 @@ export const AllProperty = (props) => {
         <div className={s.header}>
             <ul>
                 <li>
-                    <div className={s.product}><NavLink to={'/'}>Листинг товаров</NavLink></div>
+                    <div className={s.product}><NavLink to={'/Items'}>Листинг товаров</NavLink></div>
                 </li>
                 <li>
                     <div className={s.properties}><NavLink to={'/AllProperty'}>Листинг проперти</NavLink></div>
@@ -27,13 +28,8 @@ export const AllProperty = (props) => {
                         <th className={s.colorName}>Тип</th>
                         <th className={s.colorName}>Управление</th>
                     </tr>
-                    {props.properties.map((pro) => <tr key={pro.id}>
-                            <td>{pro.name}</td>
-                            <td>{pro.type}</td>
-                            <td className={s.delete}><NavLink to={'/AllProperty'}
-                                                              onClick={() => props.deleteProperty(pro.id)}>Удалить</NavLink>
-                            </td>
-                        </tr>
+                    {props.properties.map((pro) =>
+                        <Property key={pro.id} name={pro.name} type={pro.type} id={pro.id} deleteProperty={props.deleteProperty}/>
                     )}
                     </tbody>
 

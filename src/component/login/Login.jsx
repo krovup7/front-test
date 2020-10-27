@@ -1,45 +1,42 @@
 import React from "react";
-import s from './Login.module.css'
-
-export const Login = (props) => {
-    return <div className={s.LoginContent}>
-                <div className={s.LoginMain}>
-                    <div className={s.LoginForm}>
-                        <div className={s.LoginFormMain}>
-                            <h2>Вход</h2>
-                            <form onSubmit={props.handleSubmit}>
-                                <div className={s.FormLogin}>
-                                    <label htmlFor="email">Email</label>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        onChange={props.handleChange}
-                                        onBlur={props.handleBlur}
-                                        value={props.values.email}
+import * as LoginService from "./LoginService";
+import s from "./Login.module.css";
+import {ErrorMessage, Field, Form, Formik} from "formik";
+export const Login=(props)=>{
+    return(
+        <Formik{...LoginService.formikProps} onSubmit={props.onSubmit}>
+            {({errors, touched, ...props}) => (
+                <div className={s.LoginContent}>
+                    <div className={s.LoginMain}>
+                        <div className={s.LoginForm}>
+                            <div className={s.LoginFormMain}>
+                                <h2>Вход</h2>
+                                <Form>
+                                    <Field
+                                        name={LoginService.FIELDS.EMAIL}
+                                        as={LoginService.TextInput}
+                                        {...props}
                                     />
-                                    {props.errors.email && props.touched.email && props.errors.email}
-                                </div>
-
-                                <div className={s.FormPassword}>
-                                    <label>Пароль</label>
-                                    <input
-                                        type="password"
-                                        name="password"
-                                        onChange={props.handleChange}
-                                        onBlur={props.handleBlur}
-                                        value={props.values.password}
+                                    <ErrorMessage name={LoginService.FIELDS.EMAIL}>
+                                        {msg => <LoginService.Error msg={msg}/>}
+                                    </ErrorMessage>
+                                    <Field
+                                        name={LoginService.FIELDS.PASSWORD}
+                                        as={LoginService.PasswordInput}
+                                        {...props}
                                     />
-                                    {props.errors.password && props.touched.password && props.errors.password}
-                                </div>
-                                <div className={s.Formbutton}>
-                                    <button type="submit" >Войти</button>
-                                </div>
-                            </form>
+                                    <ErrorMessage name={LoginService.FIELDS.PASSWORD}>
+                                        {msg => <LoginService.Error msg={msg}/>}
+                                    </ErrorMessage>
+                                    <div className={s.Formbutton}>
+                                        <button type="submit">Войти</button>
+                                    </div>
+                                </Form>
+                            </div>
                         </div>
+
                     </div>
-
-                </div>
-            </div>
-
+                </div>)}
+        </Formik>
+    )
 }
-

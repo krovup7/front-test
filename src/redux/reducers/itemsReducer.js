@@ -1,13 +1,14 @@
 import {
     ADD_ITEM,
-    ADD_PROPERTY,
     CHANGE_ITEM,
-    DELETE_ITEM, DELETE_PROPERTY,
+    DELETE_ITEM,
     HIDE_ALERT,
-    LOGIN,
     SHOW_ALERT,
+    DELETE_PROPERTY,
     SORT_ITEMS_BY_PRICE
 } from "../types/types";
+
+
 
 let initialState = {
     items: [
@@ -53,33 +54,12 @@ let initialState = {
                 2: 2020,
                 3: 'Дизель',
             }
-
         },
     ],
-    properties: [{
-        id: 1,
-        name: 'Цвет авто',
-        type: 'Dropdown'
-    }, {
-        id: 2,
-        name: 'Год выпуска',
-        type: 'Number'
-    }, {
-        id: 3,
-        name: 'Тип топлива',
-        type: 'String'
-    },
-        {
-            id: 4,
-            name: 'Кузов',
-            type: "String",
-        }],
     alert: null,
-    auth: false,
-    email: 'test@mail.ru',
-    password: '123',
     sortbyPrice: false,
-    propertiesNames: ['Цвет авто', 'Год выпуска', 'Тип топлива']
+    loading: false,
+    error: '',
 };
 
 const itemsReducer = (state = initialState, action) => {
@@ -112,17 +92,6 @@ const itemsReducer = (state = initialState, action) => {
                     ...state, items: state.items.slice().sort((a, b) => (b.price - a.price)), sortbyPrice: false
                 }
             }
-        case ADD_PROPERTY:
-            return {
-                ...state, properties: [...state.properties, action.property],
-                propertiesNames: [...state.propertiesNames, action.property.name]
-            };
-        case DELETE_PROPERTY:
-            const newProperty = state.properties.filter((property) => property.id !== action.id);
-             state.items.map(item=> delete item.property[action.id])
-            return {
-                ...state, properties: newProperty,
-            };
         case SHOW_ALERT:
             return {
 
@@ -132,16 +101,12 @@ const itemsReducer = (state = initialState, action) => {
             return {
                 ...state, alert: null
             };
-        case LOGIN:
-            if (action.data.email === state.email && action.data.password === state.password) {
-                return {
-                    ...state, auth: true
-                }
-            } else {
-                alert('Неверный логин или пароль')
-            }
+        case DELETE_PROPERTY:
+            state.items.map(item => delete item.property[action.id])
+
         default:
             return state;
+
     }
 }
 

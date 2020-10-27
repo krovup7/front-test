@@ -6,7 +6,7 @@ import {ItemInput} from "./ItemInput";
 export const ItemCard = (props) => {
     return (<div className={s.ItemContent}>
         <div className={s.ItemMain}>
-            <NavLink to={'/'}>Вернуться</NavLink>
+            <NavLink to={'/Items'}>Вернуться</NavLink>
             <hr/>
             <div className={s.Columns}>
                 <div className={s.ItemImg}><img

@@ -18,7 +18,7 @@ const ChangeItemContainer = (props) => {
     let items = useSelector(state => state.items.items)
     let userId = props.match.params.userId
     let item = items.find(item => item.id == userId)
-    let allProp = useSelector(state => state.items.properties)
+    let allProp = useSelector(state => state.properties.properties)
 
     useEffect(() => {
         setProperties(item.property)
@@ -26,7 +26,7 @@ const ChangeItemContainer = (props) => {
         setCurrency(item.currency)
         setTitle(item.title)
 
-    }, [userId]);
+    }, [item.currency, item.photo, item.property, item.title, userId]);
     let avaibleProp = allProp.filter(o => !properties.hasOwnProperty(o.id))
 
     const deleteProperty = (id) => {
@@ -106,17 +106,9 @@ const ChangeItemContainer = (props) => {
                       );
                   }}
         >{({
-               values,
-               errors,
-               touched,
-               handleChange,
-               handleBlur,
+               ...props
            }) => <ChangeItem
-            handleChange={handleChange}
-            handleBlur={handleBlur}
-            touched={touched}
-            errors={errors}
-            values={values}
+            {...props}
             handleImageChange={handleImageChange}
             title={title}
             setTitle={setTitle}
@@ -129,6 +121,7 @@ const ChangeItemContainer = (props) => {
             allProp={allProp}
             setPropertyValue={setPropertyValue}
             setPropertyDropdownValue={setPropertyDropdownValue}
+            photo={photo}
         />}</Formik>)
 }
 const WRChangeItem = withRouter(ChangeItemContainer)

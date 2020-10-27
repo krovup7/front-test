@@ -8,9 +8,14 @@ import {applyMiddleware, compose, createStore} from "redux";
 import {rootReducer} from "./redux/rootReducer";
 import thunk from "redux-thunk";
 import {notificationAlert,} from "./redux/middleware/middleware";
+import {loadState, saveState} from "./redux/localStorage";
 
-const store = createStore(rootReducer, compose(applyMiddleware(thunk,notificationAlert),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const persistedState = loadState()
+const store = createStore(rootReducer, persistedState, compose(applyMiddleware(thunk,notificationAlert),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 );
+store.subscribe(()=>{
+    saveState(store.getState())
+})
 const app=(
     <Provider store={store}>
         <App />

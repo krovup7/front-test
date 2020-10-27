@@ -32,7 +32,7 @@ export const AddItemContainer = () => {
     const dispatch = useDispatch();
     let items = useSelector(state => state.items.items)
     let item = items[items.length - 1]
-    let allProp = useSelector(state => state.items.properties)
+    let allProp = useSelector(state => state.properties.properties)
     let avaibleProp = allProp.filter(o => !choosesProp.find(x => o.id === x.id))
 
     const deleteProperty = (id) => {
@@ -67,7 +67,7 @@ export const AddItemContainer = () => {
         setCount(count.slice(0, -1))
     }
 
-    return (redirect ? <Redirect to={'/'}/>
+    return (redirect ? <Redirect to={'/Items'}/>
         : <Formik initialValues={{name: '', price: ''}}
                   validate={values => {
                       const errors = {};
@@ -118,5 +118,6 @@ export const AddItemContainer = () => {
             deleteDropdown={deleteDropdown}
             handleImageChange={handleImageChange}
             count={count}
+            title={title}
         />}</Formik>)
 }

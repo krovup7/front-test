@@ -118,6 +118,11 @@ input[type="file"] {
     height: 15px;
     width: 220px
 }
+.updateImg{
+    margin-top: 1rem;
+    width: 250px;
+    height: 200px;
+}
 
 .uploadFile span {
     float: right;

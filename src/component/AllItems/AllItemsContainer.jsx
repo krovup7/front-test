@@ -4,11 +4,11 @@ import {AllItems} from "./AllItems";
 import {useDispatch} from "react-redux";
 import {deleteItem, sortItems} from "../../redux/actions/ItemsAction";
 
-export const AllItemsContainer = () => {
+export const AllItemsContainer = (props) => {
     const [search, setSearch] = useState('');
     const [filteredItems, setFilteredItems] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage] = useState(5);
+    const [currentPage, setCurrentPage] = useState(props.match.params.page || 1);
+    const [itemsPerPage] = useState(2);
     let items = useSelector(state => state.items.items)
     const dispatch = useDispatch();
     useEffect(() => {
@@ -27,11 +27,14 @@ export const AllItemsContainer = () => {
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
     // Change page
-    const paginate = pageNumber => setCurrentPage(pageNumber);
+    const paginate = pageNumber => {
+        setCurrentPage(pageNumber)
+        props.history.push(`/Items/${pageNumber}`)
+    }
     return (<div>
             <AllItems currentItems={currentItems} setSearch={setSearch} currentPage={currentPage}
                       itemsPerPage={itemsPerPage}
-                      totalItems={items.length}
+                      totalItems={ Math.ceil(items.length/itemsPerPage)}
                       paginate={paginate} deleteProduct={deleteProduct} sortItems={sortProduct}/>
         </div>
     )

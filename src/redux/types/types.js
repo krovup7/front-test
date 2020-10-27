@@ -7,4 +7,5 @@ export const HIDE_ALERT = "HIDE_ALERT"
 export const LOGIN = "LOGIN"
 export const ADD_PROPERTY = "ADD_PROPERTY"
 export const DELETE_PROPERTY = "DELETE_PROPERTY"
+export const GET_ITEM = "GET_ITEM"
 

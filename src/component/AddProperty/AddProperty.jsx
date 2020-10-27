@@ -2,7 +2,6 @@ import React from "react";
 import s from './AddProperty.module.css'
 import {NavLink} from "react-router-dom";
 import {Field, Form, } from "formik";
-
 export const AddProperty = (props) => {
     return (<div className = {s.AddContent}>
         <div className = {s.AddMain}>

@@ -3,8 +3,9 @@ import s from './AllItems.module.css'
 import {NavLink} from "react-router-dom";
 import {Icon} from '@iconify/react';
 import chevronSortDown from '@iconify/icons-carbon/chevron-sort-down';
-import {Pagination} from "../utils/Pagination/Pagination";
-
+import {Item} from "./Item";
+import Pagination from "react-pagination-library";
+import "react-pagination-library/build/css/index.css"; //for css
 export const AllItems = (props) => {
     return (<div className={s.AllContent}>
         <div className={s.header}>
@@ -33,23 +34,17 @@ export const AllItems = (props) => {
                         <th className={s.colorName}>Дата изменения</th>
                         <th className={s.colorName}>Управление</th>
                     </tr>
-                    {props.currentItems.map((item) => <tr key={item.id}>
-                            <td><NavLink to={'/ItemCard/' + item.id}>{item.name}</NavLink></td>
-                            <td>{item.price.toLocaleString('ru')}{item.currency}</td>
-                            <td>{item.changed}</td>
-                            <td className={s.edit}><NavLink to={'/ChangeItem/' + item.id}>Ред.</NavLink> <NavLink to={'/'}
-                                                                                                                  onClick={() => props.deleteProduct(item.id)}>Удалить</NavLink>
-                            </td>
-                        </tr>
+                    {props.currentItems.map((item) =>
+                        <Item key={item.id} id={item.id} name={item.name} price={item.price} currency={item.currency} changed={item.changed} deleteProduct={props.deleteProduct}/>
                     )}
                     </tbody>
                 </table>
             </div>
             <Pagination
                 currentPage = {props.currentPage}
-                itemsPerPage = {props.itemsPerPage}
-                totalItems = {props.totalItems}
-                paginate = {props.paginate}
+                totalPages = {props.totalItems}
+                changeCurrentPage = {props.paginate}
+                theme="square-fill"
             />
         </div>
 

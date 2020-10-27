@@ -30,6 +30,9 @@ export const showAlert = (text) => {
 export const hideAlert = () => {
     return {type: "HIDE_ALERT",}
 };
-export const login = (data) => {
-    return {type: "LOGIN", data}
+export const login = () => {
+    return {type: "LOGIN", }
+};
+export const getItem = (item, properties) => {
+    return {type: "GET_ITEM", item, properties}
 };

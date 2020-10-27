@@ -6,7 +6,7 @@ import {useDispatch} from "react-redux";
 
 export const AllPropertyContainer = () => {
     const dispatch = useDispatch();
-    let properties = useSelector(state => state.items.properties)
+    let properties = useSelector(state => state.properties.properties)
     const deleteProp=(id)=>{
         dispatch(deleteProperty(id))
     };

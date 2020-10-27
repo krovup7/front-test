@@ -13,7 +13,7 @@ export const ChangeItem = (props) => {
             <Form>
                 <div className={s.navBlock}>
                     <div>
-                        <NavLink to={'/'} className={s.back}>Вернуться</NavLink>
+                        <NavLink to={'/Items'} className={s.back}>Вернуться</NavLink>
                     </div>
                     <div>
                         <button type="submit">Сохранить</button>
@@ -42,10 +42,11 @@ export const ChangeItem = (props) => {
                     {props.errors.price && props.touched.price && props.errors.price}
                     <p>Изображение<span style={{color: "red"}}>*</span></p>
                     <div className={s.uploadFile}><label>
-                        <input type="file" onChange={props.handleImageChange}/>
+                        <input type="file" accept="image/jpeg,image/png,image/gif" onChange={props.handleImageChange}/>
                         <p>image <span><Icon icon={uploadIcon} color="blue" width="20"/></span></p>
 
                     </label></div>
+                    <div><img src={props.photo} className={s.updateImg}/></div>
                     <p>Описание</p>
                     <textarea value={props.title} onChange={(e) => props.setTitle(e.target.value)}/>
                 </div>

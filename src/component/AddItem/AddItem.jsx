@@ -6,6 +6,7 @@ import {Icon} from "@iconify/react";
 import uploadIcon from "@iconify/icons-fa-solid/upload";
 import plusCircleOutlined from "@iconify/icons-ant-design/plus-circle-outlined";
 import {FormProperty} from "./FormProperty";
+import {Option} from "./Option";
 
 export const AddItem = (props) => {
     return (
@@ -43,12 +44,12 @@ export const AddItem = (props) => {
                         {props.errors.price && props.touched.price && props.errors.price}
                         <p>Изображение<span style={{color: "red"}}>*</span></p>
                         <div className={s.uploadFile}><label>
-                            <input type="file" onChange={props.handleImageChange}/>
+                            <input type="file" accept="image/jpeg,image/png,image/gif" onChange={props.handleImageChange}/>
                             <p>image <span><Icon icon={uploadIcon} color="blue" width="20"/></span></p>
 
                         </label></div>
                         <p>Описание</p>
-                        <textarea onChange={(e) => props.setTitle(e.target.value)}/>
+                        <textarea onChange={(e) => props.setTitle(e.target.value)} value={props.title}/>
                     </div>
                     <div className={s.propert}>
                <span><h4>
@@ -58,7 +59,7 @@ export const AddItem = (props) => {
                                            <option value="0">Выберите свойство</option>
 
                    {props.avaibleProp.map((p, index) =>
-                       <option key={index} value={p.id}>{p.name}</option>
+                       <Option key={index} name={p.name} value={p.id}/>
                    )}
                 </select></span>
                 </h4></span>
