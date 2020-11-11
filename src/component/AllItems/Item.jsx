@@ -1,16 +1,30 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
-import s from "./AllItems.module.css";
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
 
-export const Item = (props) => {
-    return(
-        <tr>
-            <td><NavLink to={'/ItemCard/' + props.id}>{props.name}</NavLink></td>
-            <td>{props.price.toLocaleString('ru')}{props.currency}</td>
-            <td>{props.changed}</td>
-            <td className={s.edit}><NavLink to={'/ChangeItem/' + props.id}>Ред.</NavLink> <NavLink to={'/Items'}
-                                                                                                  onClick={() => props.deleteProduct(props.id)}>Удалить</NavLink>
-            </td>
-        </tr>
-    )
-}
+const Edit = styled.td`
+    a {
+      margin-right: 20px;
+    }
+  `;
+export const Item = ({ id, name, price, changed, deleteProduct, currency }) => {
+
+  return (
+    <tr>
+      <td>
+        <NavLink to={"/ItemCard/" + id}>{name}</NavLink>
+      </td>
+      <td>
+        {price.toLocaleString("ru")}
+        {currency}
+      </td>
+      <td>{changed}</td>
+      <Edit>
+        <NavLink to={"/ChangeItem/" + id}>Ред.</NavLink>{" "}
+        <NavLink to={"/Items"} onClick={() => deleteProduct(id)}>
+          Удалить
+        </NavLink>
+      </Edit>
+    </tr>
+  );
+};
